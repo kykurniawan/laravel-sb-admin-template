@@ -2,8 +2,8 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-                @include('sb-admin::components.partials.sidebar-items', [
-                    'items' => config('sb-admin.sidebar-items'),
+                @include('laravel-sb-admin-template::partials.sidebar-items', [
+                    'items' => config('laravel-sb-admin-template.sidebar.items'),
                 ])
             </div>
         </div>
