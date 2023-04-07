@@ -1,0 +1,28 @@
+{
+    "name": "kykurniawan/laravel-sb-admin-template",
+    "description": "Laravel SB Admin Template",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "KyKurniawan\\LaravelSBAdminTemplate\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rizky Kurniawan",
+            "email": "contact.rizkykurniawan@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "illuminate/support": "^10.6"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "KyKurniawan\\LaravelSBAdminTemplate\\LaravelSBAdminTemplateServiceProvider"
+            ]
+        }
+    }
+}
