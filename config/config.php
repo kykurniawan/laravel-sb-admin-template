@@ -19,7 +19,7 @@ return [
                     'type' => 'link', // required
                     'text' => 'Link 1', // required
                     'href' => '/', // required
-                    'target' => 'parent', // optional
+                    'target' => '_parent', // optional
                     'hidden' => false, // optional, will hide the item when true
                 ],
                 [
@@ -29,7 +29,7 @@ return [
                     'type' => 'link',
                     'text' => 'Link 2',
                     'href' => '/',
-                    'target' => 'parent',
+                    'target' => '_parent',
                     'hidden' => false,
                 ],
                 [
@@ -68,7 +68,7 @@ return [
                 'text' => 'Link 1', // required,
                 'icon' => '<i class="fas fa-circle fa-fw"></i>', // optional
                 'href' => '', // required
-                'target' => 'parent', // optional
+                'target' => '_parent', // optional
                 'active' => false, // optional
                 'hidden' => false, // optional, will hide the link and its children if true
                 'children' => [], // optional, children link. the children config is same as this link config
@@ -78,7 +78,7 @@ return [
                 'text' => 'Link 2',
                 'icon' => '<i class="fas fa-circle fa-fw"></i>',
                 'href' => '/',
-                'target' => 'parent',
+                'target' => '_parent',
                 'active' => false,
                 'hidden' => false,
                 'children' => [
@@ -87,7 +87,7 @@ return [
                         'text' => 'Link 2.1',
                         'icon' => '<i class="fas fa-circle fa-fw"></i>',
                         'href' => '/',
-                        'target' => 'parent',
+                        'target' => '_parent',
                         'active' => false,
                         'hidden' => false,
                         'children' => [],
@@ -97,7 +97,7 @@ return [
                         'text' => 'Link 2.2',
                         'icon' => '<i class="fas fa-circle fa-fw"></i>',
                         'href' => '/',
-                        'target' => 'parent',
+                        'target' => '_parent',
                         'active' => false,
                         'hidden' => false,
                         'children' => []

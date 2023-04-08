@@ -30,7 +30,7 @@
                     </nav>
                 </div>
             @else
-                <a target="{{ isset($item['target']) ? $item['target'] : 'parent' }}"
+                <a target="{{ isset($item['target']) ? $item['target'] : '_parent' }}"
                     class="nav-link {{ isset($item['active']) && $item['active'] === true ? 'active' : '' }}"
                     href="{{ $item['href'] }}">
                     @if (isset($item['icon']))

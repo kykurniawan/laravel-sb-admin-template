@@ -60,7 +60,7 @@ You can also add something on your template's foot (before body closing tag)
 
 **Note:**
 The `@parent` directive is keeps default element being loaded (template style, template script).
-If you don't add this directive, you want to include template's style or template's script manually
+If you don't add this directive, you need to include template's style or template's script manually
 ```html
 <!-- for head -->
 @section('head')

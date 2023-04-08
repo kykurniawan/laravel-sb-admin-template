@@ -20,7 +20,7 @@
                     @if (!$hidden)
                         @if ($item['type'] === 'link')
                             <li><a class="dropdown-item"
-                                    target="{{ isset($item['target']) ? $item['target'] : 'parent' }}"
+                                    target="{{ isset($item['target']) ? $item['target'] : '_parent' }}"
                                     href="{{ $item['href'] }}">{{ $item['text'] }}</a></li>
                         @elseif($item['type'] === 'divider')
                             <li>
