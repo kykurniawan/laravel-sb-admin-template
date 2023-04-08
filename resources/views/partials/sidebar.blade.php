@@ -14,7 +14,7 @@
             $sidebarFooter = $sidebar->getSidebarFooter();
             $visible = $sidebarFooter->getVisible();
             if (!is_string($visible) && is_callable($visible)) {
-                $visible = $visible($sidebarFooter);
+                $visible = $visible(request());
             }
             $text = $sidebarFooter->getText();
             if (!is_string($text) && is_callable($text)) {

@@ -26,7 +26,7 @@
                     @php
                         $visible = $item->getVisible();
                         if (!is_string($visible) && is_callable($visible)) {
-                            $visible = $visible($item);
+                            $visible = $visible(request());
                         }
                         $href = $item->getHref();
                         if (!is_string($href) && is_callable($href)) {

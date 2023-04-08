@@ -2,11 +2,11 @@
     @php
         $visible = $item->getVisible();
         if (!is_string($visible) && is_callable($visible)) {
-            $visible = $visible($item);
+            $visible = $visible(request());
         }
         $active = $item->getActive();
         if (!is_string($active) && is_callable($active)) {
-            $active = $active($item);
+            $active = $active(request());
         }
         $text = $item->getText();
         if (!is_string($text) && is_callable($text)) {
