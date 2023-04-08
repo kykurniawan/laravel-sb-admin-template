@@ -25,7 +25,7 @@ class Footer
         return new self;
     }
 
-    public function copyright(string $copyright)
+    public function copyright($copyright)
     {
         $this->copyright = $copyright;
 

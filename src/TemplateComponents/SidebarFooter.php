@@ -25,7 +25,7 @@ class SidebarFooter
         return $this->id;
     }
 
-    public function text(string $text)
+    public function text($text)
     {
         $this->text = $text;
 

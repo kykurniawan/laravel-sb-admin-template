@@ -172,17 +172,17 @@ use KyKurniawan\LaravelSBAdminTemplate\TemplateComponents\Navbar;
 
 Initialize the component. This is static method. You need to call this method when create the component.
 
-**`brandTitle(string)`**
+**`brandTitle(string|callable)`**
 
-Set navbar brand title.
+Set navbar brand title. Accept string or function that returns string.
 
-**`brandHref(string)`**
+**`brandHref(string|callable)`**
 
-Set navbar brand href link.
+Set navbar brand href link. Accept string or function that returns string.
 
-**`dropDownIcon(string)`**
+**`dropDownIcon(string|callable)`**
 
-Set navbar dropdown icon.
+Set navbar dropdown icon. Accept string or function that returns string.
 
 **`dropDownItems([])`**
 
@@ -202,25 +202,25 @@ Initialize the component. This is static method. You need to call this method wh
 
 Set item type. Allowed types: [link, divider, view].
 
-**`text(string)`**
+**`text(string|callable)`**
 
-Set item text. Only work when item type is link.
+Set item text. Only work when item type is link. Accept string or function that returns string.
 
-**`href(sring)`**
+**`href(sring|callable)`**
 
-Set item href link. Only work when item type is link.
+Set item href link. Only work when item type is link. Accept string or function that returns string.
 
-**`target(sring)`**
+**`target(sring|callable)`**
 
-Set item target link. Only work when item type is link.
+Set item target link. Only work when item type is link. Accept string or function that returns string.
 
 **`visible(bool|callable)`**
 
 Set item visibility. Accept boolean or function that returns boolean.
 
-**`view(string)`**
+**`view(string|callable)`**
 
-Set item blade view name (from your view folder). Only work if item type is view.
+Set item blade view name (from your view folder). Only work if item type is view. Accept string or function that returns string.
 
 #### Sidebar
 
@@ -254,25 +254,25 @@ Initialize the component. This is static method. You need to call this method wh
 
 Set item type. Allowed types: [link, heading].
 
-**`text(string)`**
+**`text(string|callable)`**
 
-Set item text.
+Set item text. Accept string or function that returns string.
 
-**`href(sring)`**
+**`href(sring|callable)`**
 
 Set item href link. Only work when item type is link.
 
-**`target(sring)`**
+**`target(sring|callable)`**
 
-Set item target link. Only work when item type is link.
+Set item target link. Only work when item type is link. Accept string or function that returns string.
 
 **`visible(bool|callable)`**
 
 Set item visibility. Accept boolean or function that returns boolean.
 
-**`icon(string)`**
+**`icon(string|callable)`**
 
-Set item icon. Only work when item type is link.
+Set item icon. Only work when item type is link. Accept string or function that returns string.
 
 **`active(bool|callable)`**
 
@@ -291,9 +291,9 @@ use KyKurniawan\LaravelSBAdminTemplate\TemplateComponents\SidebarFooter;
 
 Initialize the component. This is static method. You need to call this method when create the component.
 
-**`text(string)`**
+**`text(string|callable)`**
 
-Set sidebar footer text.
+Set sidebar footer text. Accept string or function that returns string.
 
 **`visible(bool|callable)`**
 
@@ -309,13 +309,22 @@ use KyKurniawan\LaravelSBAdminTemplate\TemplateComponents\Footer;
 
 Initialize the component. This is static method. You need to call this method when create the component.
 
-**`copyright(string)`**
+**`copyright(string|callable)`**
 
-Set footer copyright text.
+Set footer copyright text. Accept string or function that returns string.
 
 **`visible(bool|callable)`**
 
 Set footer visibility. Accept boolean or function that returns boolean.
+
+---
+**Note:** request object are passed to all callable functions. Example:
+```php
+Footer::make()->copyright(function($request) {
+    return $request->query('copyright');
+})
+```
+---
 
 ## Overriding Template
 

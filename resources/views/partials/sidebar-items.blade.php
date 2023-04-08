@@ -1,26 +1,42 @@
 @foreach ($items as $item)
     @php
         $visible = $item->getVisible();
-        if (is_callable($visible)) {
+        if (!is_string($visible) && is_callable($visible)) {
             $visible = $visible($item);
         }
         $active = $item->getActive();
-        if (is_callable($active)) {
+        if (!is_string($active) && is_callable($active)) {
             $active = $active($item);
+        }
+        $text = $item->getText();
+        if (!is_string($text) && is_callable($text)) {
+            $text = $text(request());
+        }
+        $icon = $item->getIcon();
+        if (!is_string($icon) && is_callable($icon)) {
+            $icon = $icon(request());
+        }
+        $target = $item->getTarget();
+        if (!is_string($target) && is_callable($target)) {
+            $target = $target(request());
+        }
+        $href = $item->getHref();
+        if (!is_string($href) && is_callable($href)) {
+            $href = $href(request());
         }
     @endphp
     @if ($visible)
         @if ($item->getType() === 'heading')
-            <div class="sb-sidenav-menu-heading">{{ $item->getText() }}</div>
+            <div class="sb-sidenav-menu-heading">{{ $text }}</div>
         @elseif($item->getType() === 'link')
             @if (sizeof($item->getChildren()) > 0)
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                     data-bs-target="#collapseLayouts{{ $item->getId() }}" aria-expanded="false"
                     aria-controls="collapseLayouts{{ $item->getId() }}">
-                    @if ($icon = $item->getIcon())
+                    @if ($icon)
                         <div class="sb-nav-link-icon">{!! $icon !!}</div>
                     @endif
-                    {{ $item->getText() }}
+                    {{ $text }}
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapseLayouts{{ $item->getId() }}" aria-labelledby="headingOne">
@@ -31,11 +47,11 @@
                     </nav>
                 </div>
             @else
-                <a target="{{ $item->getTarget() }}" class="nav-link {{ $active }}" href="{{ $item->getHref() }}">
-                    @if ($icon = $item->getIcon())
+                <a target="{{ $target }}" class="nav-link {{ $active }}" href="{{ $href }}">
+                    @if ($icon)
                         <div class="sb-nav-link-icon">{!! $icon !!}</div>
                     @endif
-                    {{ $item->getText() }}
+                    {{ $text }}
                 </a>
             @endif
         @endif

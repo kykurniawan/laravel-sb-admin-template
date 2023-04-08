@@ -33,7 +33,7 @@ class Navbar
         return $this->id;
     }
 
-    public function brandTitle(string $brandTitle)
+    public function brandTitle($brandTitle)
     {
         $this->brandTitle = $brandTitle;
 
@@ -45,7 +45,7 @@ class Navbar
         return $this->brandTitle;
     }
 
-    public function brandHref(string $brandHref)
+    public function brandHref($brandHref)
     {
         $this->brandHref = $brandHref;
 
@@ -57,7 +57,7 @@ class Navbar
         return $this->brandHref;
     }
 
-    public function dropDownIcon(string $dropDownIcon)
+    public function dropDownIcon($dropDownIcon)
     {
         $this->dropDownIcon = $dropDownIcon;
 

@@ -13,13 +13,17 @@
         @php
             $sidebarFooter = $sidebar->getSidebarFooter();
             $visible = $sidebarFooter->getVisible();
-            if (is_callable($visible)) {
+            if (!is_string($visible) && is_callable($visible)) {
                 $visible = $visible($sidebarFooter);
+            }
+            $text = $sidebarFooter->getText();
+            if (!is_string($text) && is_callable($text)) {
+                $text = $text(request());
             }
         @endphp
         @if ($visible)
             <div class="sb-sidenav-footer">
-                <div>{{ $sidebarFooter->getText() }}</div>
+                <div>{{ $text }}</div>
             </div>
         @endif
     </nav>
