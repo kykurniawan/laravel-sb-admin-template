@@ -61,7 +61,7 @@ return [
             [
                 'type' => 'heading', // required
                 'text' => 'Main Menu', // required
-                'hidden' => false, // optional, will hide the heading if true
+                'visible' => true, // optional, will hide the heading if false
             ],
             [
                 'type' => 'link', // required
@@ -70,7 +70,7 @@ return [
                 'href' => '', // required
                 'target' => '_parent', // optional
                 'active' => false, // optional
-                'hidden' => false, // optional, will hide the link and its children if true
+                'visible' => true, // optional, will hide the link and its children if false
                 'children' => [], // optional, children link. the children config is same as this link config
             ],
             [
@@ -80,7 +80,7 @@ return [
                 'href' => '/',
                 'target' => '_parent',
                 'active' => false,
-                'hidden' => false,
+                'visible' => true,
                 'children' => [
                     [
                         'type' => 'link',
@@ -89,7 +89,7 @@ return [
                         'href' => '/',
                         'target' => '_parent',
                         'active' => false,
-                        'hidden' => false,
+                        'visible' => true,
                         'children' => [],
                     ],
                     [
@@ -99,11 +99,15 @@ return [
                         'href' => '/',
                         'target' => '_parent',
                         'active' => false,
-                        'hidden' => false,
+                        'visible' => true,
                         'children' => []
                     ]
                 ]
             ],
+        ],
+        'footer' => [ // optional
+            'visible' => true, // optional
+            'text' => 'sidebar footer' // required
         ]
     ]
 ];

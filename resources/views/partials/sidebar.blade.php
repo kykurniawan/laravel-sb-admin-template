@@ -7,5 +7,10 @@
                 ])
             </div>
         </div>
+        @if (config('laravel-sb-admin-template.sidebar.footer.visible'))
+            <div class="sb-sidenav-footer">
+                <div>{{ config('laravel-sb-admin-template.sidebar.footer.text') }}</div>
+            </div>
+        @endif
     </nav>
 </div>

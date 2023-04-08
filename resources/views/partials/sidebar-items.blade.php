@@ -1,14 +1,12 @@
 @foreach ($items as $index => $item)
     @php
         $index .= uniqid();
-        $hidden = false;
-        if (isset($item['hidden'])) {
-            if ($item['hidden'] === true) {
-                $hidden = true;
-            }
+        $visible = true;
+        if (isset($item['visible'])) {
+            $visible = $item['visible'];
         }
     @endphp
-    @if (!$hidden)
+    @if ($visible)
         @if ($item['type'] === 'heading')
             <div class="sb-sidenav-menu-heading">{{ $item['text'] }}</div>
         @elseif($item['type'] === 'link')

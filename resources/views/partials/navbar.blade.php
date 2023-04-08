@@ -10,14 +10,12 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 @foreach (config('laravel-sb-admin-template.navbar.dropdown.items') as $item)
                     @php
-                        $hidden = false;
-                        if (isset($item['hidden'])) {
-                            if ($item['hidden'] === true) {
-                                $hidden = true;
-                            }
+                        $visible = true;
+                        if (isset($item['visible'])) {
+                            $visible = $item['visible'];
                         }
                     @endphp
-                    @if (!$hidden)
+                    @if ($visible)
                         @if ($item['type'] === 'link')
                             <li><a class="dropdown-item"
                                     target="{{ isset($item['target']) ? $item['target'] : '_parent' }}"
