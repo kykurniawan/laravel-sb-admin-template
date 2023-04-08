@@ -3,7 +3,6 @@
 namespace KyKurniawan\LaravelSBAdminTemplate\Console;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 
 class LaravelSBAdminTemplateInstall extends Command

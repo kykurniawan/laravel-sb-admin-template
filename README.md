@@ -92,7 +92,12 @@ Import template facade and template components:
 
 ```php
 use KyKurniawan\LaravelSBAdminTemplate\Facades\Template;
+use KyKurniawan\LaravelSBAdminTemplate\TemplateComponents\Footer;
 use KyKurniawan\LaravelSBAdminTemplate\TemplateComponents\Navbar;
+use KyKurniawan\LaravelSBAdminTemplate\TemplateComponents\NavbarDropDownItem;
+use KyKurniawan\LaravelSBAdminTemplate\TemplateComponents\Sidebar;
+use KyKurniawan\LaravelSBAdminTemplate\TemplateComponents\SidebarFooter;
+use KyKurniawan\LaravelSBAdminTemplate\TemplateComponents\SidebarItem;
 ```
 
 then, in the boot method on your app service provider:
@@ -122,6 +127,34 @@ class AppServiceProvider extends ServiceProvider
                     NavbarDropDownItem::make()->type('divider'),
                     NavbarDropDownItem::make()->text('Drop Down Link 2'),
                 ])
+        );
+
+        Template::sidebar(
+            Sidebar::make()
+                ->sidebarItems([
+                    SidebarItem::make()->type('heading')->text('Main'),
+                    SidebarItem::make()
+                        ->text('Link 1')
+                        ->children([
+                            SidebarItem::make()->text('Link 1.1'),
+                            SidebarItem::make()->text('Link 1.2'),
+                        ]),
+                    SidebarItem::make()->type('heading')->text('Config'),
+                    SidebarItem::make()
+                        ->text('Link 2'),
+                    SidebarItem::make()
+                        ->text('Link 3'),
+                ])
+                ->sidebarFooter(
+                    SidebarFooter::make()
+                        ->text('Halo Footer')
+                )
+        );
+
+        Template::footer(
+            Footer::make()
+                ->copyright('Hello World')
+                ->visible(true)
         );
     }
 }
