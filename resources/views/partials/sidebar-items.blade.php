@@ -47,7 +47,8 @@
                     </nav>
                 </div>
             @else
-                <a target="{{ $target }}" class="nav-link {{ $active }}" href="{{ $href }}">
+                <a target="{{ $target }}" class="nav-link {{ $active ? 'active' : '' }}"
+                    href="{{ $href }}">
                     @if ($icon)
                         <div class="sb-nav-link-icon">{!! $icon !!}</div>
                     @endif
