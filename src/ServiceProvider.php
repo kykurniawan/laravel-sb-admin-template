@@ -2,7 +2,10 @@
 
 namespace KyKurniawan\LaravelSBAdminTemplate;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use KyKurniawan\LaravelSBAdminTemplate\Console\LaravelSBAdminTemplateInstall;
 use KyKurniawan\LaravelSBAdminTemplate\Services\TemplateService;
 
 class ServiceProvider extends BaseServiceProvider
@@ -27,11 +30,20 @@ class ServiceProvider extends BaseServiceProvider
 
             $this->publishes([
                 __DIR__ . '/../config/laravel-sb-admin-template.php' => $this->app->basePath('config/laravel-sb-admin-template.php'),
-            ]);
+            ], 'sb-admin-config');
 
             $this->publishes([
                 __DIR__ . '/../resources/assets' => $this->app->basePath('public/vendor/kykurniawan/laravel-sb-admin-template')
             ], 'sb-admin-assets');
+
+            $this->commands([
+                LaravelSBAdminTemplateInstall::class,
+            ]);
         }
+    }
+
+    public function app(): Application
+    {
+        return $this->app;
     }
 }

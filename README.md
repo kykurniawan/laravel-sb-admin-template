@@ -10,13 +10,13 @@ You can install the package via composer:
 composer require kykurniawan/laravel-sb-admin-template
 ```
 
-After installation, publish the package's assets:
+Install the template:
 
 ```bash
-php artisan vendor:publish --provider="KyKurniawan\LaravelSBAdminTemplate\ServiceProvider" --tag="sb-admin-assets"
+php artisan laravel-sb-admin-template:install
 ```
 
-This will copy the necessary assets (CSS, JS, images, fonts) to your public directory.
+This will copy the necessary assets (CSS, JS, images, fonts) to your public directory, and configuration file to your config directiory.
 
 ## Usage
 
@@ -82,13 +82,7 @@ If you don't add this directive, you need to include template's style or templat
 
 ## Configuration
 
-The package's configuration file is located at config/sb-admin.php. Here you can customize various aspects of the template, such as the template views, section name, etc.
-
-To customizing the config, you need to publish package's config first:
-
-```bash
-php artisan vendor:publish --provider="KyKurniawan\LaravelSBAdminTemplate\ServiceProvider" --tag="sb-admin-config"
-```
+The package's configuration file is located at config/laravel-sb-admin-template.php. Here you can customize various aspects of the template, such as the template views, section name, etc.
 
 ## Template Customization
 

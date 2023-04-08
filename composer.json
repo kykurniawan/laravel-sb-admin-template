@@ -6,7 +6,10 @@
     "autoload": {
         "psr-4": {
             "KyKurniawan\\LaravelSBAdminTemplate\\": "src/"
-        }
+        },
+        "files": [
+            "helpers/helper.php"
+        ]
     },
     "authors": [
         {
@@ -17,7 +20,8 @@
     "minimum-stability": "stable",
     "require": {
         "illuminate/support": "^10.6",
-        "illuminate/view": "^10.6"
+        "illuminate/view": "^10.6",
+        "illuminate/console": "^10.6"
     },
     "extra": {
         "laravel": {
