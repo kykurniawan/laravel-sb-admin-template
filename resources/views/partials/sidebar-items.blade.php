@@ -1,40 +1,41 @@
-@foreach ($items as $index => $item)
+@foreach ($items as $item)
     @php
-        $index .= uniqid();
-        $visible = true;
-        if (isset($item['visible'])) {
-            $visible = $item['visible'];
+        $visible = $item->getVisible();
+        if (is_callable($visible)) {
+            $visible = $visible($item);
+        }
+        $active = $item->getActive();
+        if (is_callable($active)) {
+            $active = $active($item);
         }
     @endphp
     @if ($visible)
-        @if ($item['type'] === 'heading')
-            <div class="sb-sidenav-menu-heading">{{ $item['text'] }}</div>
-        @elseif($item['type'] === 'link')
-            @if (isset($item['children']) && is_array($item['children']) && sizeof($item['children']) > 0)
+        @if ($item->getType() === 'heading')
+            <div class="sb-sidenav-menu-heading">{{ $item->getText() }}</div>
+        @elseif($item->getType() === 'link')
+            @if (sizeof($item->getChildren()) > 0)
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                    data-bs-target="#collapseLayouts{{ $index }}" aria-expanded="false"
-                    aria-controls="collapseLayouts{{ $index }}">
-                    @if (isset($item['icon']))
-                        <div class="sb-nav-link-icon">{!! $item['icon'] !!}</div>
+                    data-bs-target="#collapseLayouts{{ $item->getId() }}" aria-expanded="false"
+                    aria-controls="collapseLayouts{{ $item->getId() }}">
+                    @if ($icon = $item->getIcon())
+                        <div class="sb-nav-link-icon">{!! $icon !!}</div>
                     @endif
-                    {{ $item['text'] }}
+                    {{ $item->getText() }}
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapseLayouts{{ $index }}" aria-labelledby="headingOne">
-                    <nav class="sb-sidenav-menu-nested nav" id="{{ $index }}Parent">
-                        @include('laravel-sb-admin-template::partials.sidebar-items', [
-                            'items' => $item['children'],
+                <div class="collapse" id="collapseLayouts{{ $item->getId() }}" aria-labelledby="headingOne">
+                    <nav class="sb-sidenav-menu-nested nav" id="{{ $item->getId() }}Parent">
+                        @include(config('laravel-sb-admin-template.sidebar-items-template'), [
+                            'items' => $item->getChildren(),
                         ])
                     </nav>
                 </div>
             @else
-                <a target="{{ isset($item['target']) ? $item['target'] : '_parent' }}"
-                    class="nav-link {{ isset($item['active']) && $item['active'] === true ? 'active' : '' }}"
-                    href="{{ $item['href'] }}">
-                    @if (isset($item['icon']))
-                        <div class="sb-nav-link-icon">{!! $item['icon'] !!}</div>
+                <a target="{{ $item->getTarget() }}" class="nav-link {{ $active }}" href="{{ $item->getHref() }}">
+                    @if ($icon = $item->getIcon())
+                        <div class="sb-nav-link-icon">{!! $icon !!}</div>
                     @endif
-                    {{ $item['text'] }}
+                    {{ $item->getText() }}
                 </a>
             @endif
         @endif

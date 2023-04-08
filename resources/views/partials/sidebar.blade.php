@@ -1,15 +1,25 @@
+@php
+    $sidebar = KyKurniawan\LaravelSBAdminTemplate\Facades\Template::getSidebar();
+@endphp
 <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-                @include('laravel-sb-admin-template::partials.sidebar-items', [
-                    'items' => config('laravel-sb-admin-template.sidebar.items'),
+                @include(config('laravel-sb-admin-template.sidebar-items-template'), [
+                    'items' => $sidebar->getSidebarItems(),
                 ])
             </div>
         </div>
-        @if (config('laravel-sb-admin-template.sidebar.footer.visible'))
+        @php
+            $sidebarFooter = $sidebar->getSidebarFooter();
+            $visible = $sidebarFooter->getVisible();
+            if (is_callable($visible)) {
+                $visible = $visible($sidebarFooter);
+            }
+        @endphp
+        @if ($visible)
             <div class="sb-sidenav-footer">
-                <div>{{ config('laravel-sb-admin-template.sidebar.footer.text') }}</div>
+                <div>{{ $sidebarFooter->getText() }}</div>
             </div>
         @endif
     </nav>

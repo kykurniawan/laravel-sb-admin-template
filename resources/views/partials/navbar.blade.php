@@ -1,31 +1,34 @@
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-    <a class="navbar-brand ps-3"
-        href="{{ config('laravel-sb-admin-template.navbar.brand-href') }}">{{ config('laravel-sb-admin-template.navbar.brand-title', config('app.name')) }}</a>
+@php
+    $navbar = KyKurniawan\LaravelSBAdminTemplate\Facades\Template::getNavbar();
+@endphp
+<nav id="{{ $navbar->getId() }}" class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand ps-3" href="{{ $navbar->getBrandHref() }}">{{ $navbar->getBrandTitle() }}</a>
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
             class="fas fa-bars"></i></button>
     <ul class="navbar-nav ms-auto me-3 me-lg-4">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#!" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">{!! config('laravel-sb-admin-template.navbar.dropdown.icon') !!}</a>
+                data-bs-toggle="dropdown" aria-expanded="false">{!! $navbar->getDropDownIcon() !!}</a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                @foreach (config('laravel-sb-admin-template.navbar.dropdown.items') as $item)
+                @foreach ($navbar->getDropDownItems() as $item)
                     @php
-                        $visible = true;
-                        if (isset($item['visible'])) {
-                            $visible = $item['visible'];
+                        $visible = $item->getVisible();
+                        if (is_callable($visible)) {
+                            $visible = $visible($item);
                         }
                     @endphp
                     @if ($visible)
-                        @if ($item['type'] === 'link')
-                            <li><a class="dropdown-item"
-                                    target="{{ isset($item['target']) ? $item['target'] : '_parent' }}"
-                                    href="{{ $item['href'] }}">{{ $item['text'] }}</a></li>
-                        @elseif($item['type'] === 'divider')
+                        @if ($item->getType() === 'link')
+                            <li>
+                                <a class="dropdown-item" target="{{ $item->getTarget() }}"
+                                    href="{{ $item->getHref() }}">{{ $item->getText() }}</a>
+                            </li>
+                        @elseif($item->getType() === 'divider')
                             <li>
                                 <hr class="dropdown-divider" />
                             </li>
-                        @elseif($item['type'] === 'view')
-                            @include($item['view'])
+                        @elseif($item->getType() === 'view')
+                            @include($item->getView())
                         @endif
                     @endif
                 @endforeach
