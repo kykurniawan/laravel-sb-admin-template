@@ -22,7 +22,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "KyKurniawan\\LaravelSBAdminTemplate\\LaravelSBAdminTemplateServiceProvider"
+                "KyKurniawan\\LaravelSBAdminTemplate\\ServiceProvider"
             ]
         }
     }
